@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float _moveSpeed = 3f;
     public float _jumpHeight = 3f;
     public float _glideTimeRemaining = 3f;
-    public float _glideRate = 1.50f;
+    public float _glideRate = 5f;
     private bool isGrounded = true;
 
 
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-        
     }
 
     void Update()

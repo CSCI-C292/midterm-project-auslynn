@@ -871,4 +871,4 @@ MonoBehaviour:
   _moveSpeed: 3
   _jumpHeight: 3
   _glideTimeRemaining: 3
-  _glideRate: 1.5
+  _glideRate: 5
