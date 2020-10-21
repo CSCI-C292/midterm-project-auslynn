@@ -5,31 +5,52 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
-    public float moveSpeed = 1f;
-    public float jumpHeight = 10f;
-    public float glideTimeRemaining = 3f;
-    public float glideRate = 10f;
+    Collider2D col;
+    Collider2D groundCollider;
+    public float _moveSpeed = 3f;
+    public float _jumpHeight = 3f;
+    public float _glideTimeRemaining = 3f;
+    public float _glideRate = 1.50f;
+    private bool isGrounded = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+       {
+           Jump();
+       }
 
+       if(Input.GetKey(KeyCode.D))
+       {
+           rb.velocity = new Vector2(_moveSpeed, rb.velocity.y);
+       }
+
+       if(Input.GetKey(KeyCode.A))
+       {
+           rb.velocity = new Vector2(-_moveSpeed, rb.velocity.y);
+       }
+
+       if(Input.GetKey(KeyCode.Z))
+       {
+           Glide();
+       }
+
+       GlideReset();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-
-       // Vector2 movement = new Vector2(moveHorizontal, moveVertical) * moveSpeed * Time.deltaTime;
-       // movement.Normalize();
-
-       // rb.AddForce(movement);
+        //float moveHorizontal = Input.GetAxis("Horizontal");
 
        if(Input.GetKeyDown(KeyCode.Space))
        {
@@ -38,36 +59,66 @@ public class PlayerController : MonoBehaviour
 
        if(Input.GetKey(KeyCode.D))
        {
-           rb.velocity = new Vector2(moveSpeed, 0);
+           rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
        }
 
        if(Input.GetKey(KeyCode.A))
        {
-           rb.velocity = new Vector2(-moveSpeed, 0);
+           rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
        }
 
        if(Input.GetKey(KeyCode.Z))
        {
            Glide();
        }
+        
+    }
+    */
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+
+    void GlideReset()
+    {
+        if(isGrounded == true)
+        {
+            _glideTimeRemaining = 3f;
+        }
     }
     
     void Jump()
     {
-        rb.AddForce(new Vector2(rb.velocity.x, jumpHeight), ForceMode2D.Impulse);
+        if(isGrounded == true)
+        {
+             rb.AddForce(new Vector2(rb.velocity.x, _jumpHeight), ForceMode2D.Impulse);
+        }
     }
 
     void Glide()
     {
-        if (glideTimeRemaining > 0)
+        if (_glideTimeRemaining > 0)
         {
-                glideTimeRemaining -= Time.deltaTime;
+                _glideTimeRemaining -= Time.deltaTime;
                 //rb.AddForce(new Vector2(rb.velocity.x, rb.velocity.y + glideRate));
-                rb.velocity = new Vector2(rb.velocity.x, glideRate);
+                rb.velocity = new Vector2(rb.velocity.x, _glideRate);
         }
         else
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
     }
+
 }
