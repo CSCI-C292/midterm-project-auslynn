@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6859789737902744765}
   - component: {fileID: 250471504408294224}
-  - component: {fileID: 1902279516279639600}
   m_Layer: 0
   m_Name: SceneChange
   m_TagString: Untagged
@@ -58,15 +57,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5098495, y: 2.8019753}
   m_EdgeRadius: 0
---- !u!114 &1902279516279639600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4037280922032453814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e399ab4c5c3714044a17f5543b48223f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

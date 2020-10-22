@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,39 +47,17 @@ public class PlayerController : MonoBehaviour
        GlideReset();
     }
 
-    // Update is called once per frame
-    /*void FixedUpdate()
-    {
-        //float moveHorizontal = Input.GetAxis("Horizontal");
-
-       if(Input.GetKeyDown(KeyCode.Space))
-       {
-           Jump();
-       }
-
-       if(Input.GetKey(KeyCode.D))
-       {
-           rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-       }
-
-       if(Input.GetKey(KeyCode.A))
-       {
-           rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-       }
-
-       if(Input.GetKey(KeyCode.Z))
-       {
-           Glide();
-       }
-        
-    }
-    */
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
+        }
+
+        if(other.name == "SceneChange1")
+        {
+            SceneManager.LoadScene("Scene2");
         }
     }
 

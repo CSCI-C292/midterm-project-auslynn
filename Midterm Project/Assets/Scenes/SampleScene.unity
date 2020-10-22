@@ -288,7 +288,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: df719667ce1a5b94e9024357b90fab1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -479,11 +479,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 37.028}
---- !u!1 &728050133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7716354407231675354, guid: ffa04170b0071b74eaf24bad2db60ac3, type: 3}
-  m_PrefabInstance: {fileID: 7716354406831622355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &873690558
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,11 +937,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207832957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.94, y: 1.19, z: 0}
+  m_LocalPosition: {x: 3.94, y: 1.11, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1242502334
 GameObject:
@@ -1195,7 +1190,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84f095850b85c7645ad5f9a7fbb2e1d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1215,11 +1210,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607307240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -1.95, z: 0}
+  m_LocalPosition: {x: 2.49, y: -1.95, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1889900873
 GameObject:
@@ -1396,10 +1391,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1902279516279639600, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 728050133}
+    - target: {fileID: 250471504408294224, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.059958
+      objectReference: {fileID: 0}
+    - target: {fileID: 250471504408294224, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
+      propertyPath: m_Size.y
+      value: 7.3919134
+      objectReference: {fileID: 0}
     - target: {fileID: 4037280922032453814, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
       propertyPath: m_Name
       value: SceneChange1
