@@ -8,11 +8,15 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Collider2D col;
     Collider2D groundCollider;
+    GameObject player;
+    public GameObject barrier;
     public float _moveSpeed = 3f;
     public float _jumpHeight = 3f;
     public float _glideTimeRemaining = 3f;
     public float _glideRate = 5f;
     private bool isGrounded = true;
+    private Vector3 startingLocation;
+    private int coinCount = 0;
 
 
     // Start is called before the first frame update
@@ -20,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        player = GetComponent<GameObject>();
     }
 
     void Update()
@@ -45,6 +50,15 @@ public class PlayerController : MonoBehaviour
        }
 
        GlideReset();
+
+       if(SceneManager.GetActiveScene().name == "Scene2")
+       {
+           if(coinCount == 3)
+           {
+               barrier.SetActive(false);
+               coinCount = 0;
+           }
+       }
     }
 
 
@@ -58,6 +72,24 @@ public class PlayerController : MonoBehaviour
         if(other.name == "SceneChange1")
         {
             SceneManager.LoadScene("Scene2");
+            startingLocation = this.gameObject.transform.position;
+        }
+
+        if(other.name == "SceneChanger2")
+        {
+            SceneManager.LoadScene("Scene3");
+        }
+
+        if(other.gameObject.tag == "Enemy")
+        {
+            //this.gameObject.SetActive(false);
+            this.gameObject.transform.position = startingLocation;
+        }
+
+        if(other.gameObject.tag == "Coin")
+        {
+            other.gameObject.SetActive(false);
+            coinCount++;
         }
     }
 

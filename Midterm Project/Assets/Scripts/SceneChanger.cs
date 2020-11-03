@@ -21,11 +21,15 @@ public class SceneChanger : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if(other.name == "Player" && this.name == "SceneChanger1")
         {
             SceneManager.LoadScene("Scene2");
+        }
+        if(other.name == "Player" && this.name == "SceneChanger2")
+        {
+            SceneManager.LoadScene("Scene3");
         }
     }
 }
