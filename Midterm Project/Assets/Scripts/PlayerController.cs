@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public GameObject barrier;
+    public Canvas endCanvas;
+    public Canvas startCanvas;
     public float _moveSpeed = 3f;
     public float _jumpHeight = 3f;
     public float _glideTimeRemaining = 3f;
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private int coinCount = 0;
     private int isRunning;
     private bool flipVar;
+    private bool isWinScreenOn = false;
+    private bool isStartScreenOn = true;
 
 
     // Start is called before the first frame update
@@ -31,6 +35,9 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<GameObject>();
 
         startingLocation = transform.position;
+
+        endCanvas.gameObject.SetActive(false);
+        startCanvas.gameObject.SetActive(true);
     }
 
     void Update()
@@ -61,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
        GlideReset();
 
-       if(SceneManager.GetActiveScene().name == "Scene2")
+       if(SceneManager.GetActiveScene().name == "Scene2" || SceneManager.GetActiveScene().name == "Scene3")
        {
            if(coinCount == 3)
            {
@@ -70,6 +77,28 @@ public class PlayerController : MonoBehaviour
            }
        }
 
+        while (isWinScreenOn == true)
+        {
+            if(Input.GetButtonDown("Cancel")) //Esc
+            {
+                 endCanvas.gameObject.SetActive(false);
+                 Application.Quit();
+            }
+            if(Input.GetButtonDown("Fire1")) //E
+            {
+                 endCanvas.gameObject.SetActive(false);
+                 SceneManager.LoadScene("Scene1");
+            }
+        }
+
+        while(isStartScreenOn == true)
+        {
+            if(Input.GetButtonDown("Fire1")) //E
+            {
+                startCanvas.gameObject.SetActive(false);
+                isStartScreenOn = false;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -130,6 +159,12 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             coinCount++;
         }
+
+        if(other.gameObject.name == "WinningCoin")
+        {
+            isWinScreenOn = true;
+            endCanvas.gameObject.SetActive(true);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -147,8 +182,7 @@ public class PlayerController : MonoBehaviour
             _glideTimeRemaining = 3f;
         }
     }
-    
-    
+      
     void Jump()
     {
         if(isGrounded == true)
