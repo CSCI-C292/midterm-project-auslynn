@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 startingLocation;
     private int coinCount = 0;
     private int isRunning;
+    private bool flipVar;
 
 
     // Start is called before the first frame update
@@ -28,17 +29,19 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         player = GetComponent<GameObject>();
+
+        startingLocation = transform.position;
     }
 
     void Update()
     {
-        /*
+        
         if(Input.GetKeyDown(KeyCode.Space))
        {
            Jump();
        }
-       */
-
+       
+        /*
        if(Input.GetButtonDown("Jump"))
         {
             int levelMask = LayerMask.GetMask("Level");
@@ -48,6 +51,8 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
         }
+        */
+
 
        if(Input.GetKey(KeyCode.Z))
        {
@@ -79,39 +84,45 @@ public class PlayerController : MonoBehaviour
            rb.velocity = new Vector2(-_moveSpeed, rb.velocity.y);
        }
 
-        if(rb.velocity.x >= 0)
+        if(rb.velocity.x > 0)
         {
             spriteRenderer.flipX = false;
+            flipVar = false;
+        }
+        else if (rb.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
+            flipVar = true;
         }
         else
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = flipVar;
+        }
+
+        if(rb.velocity.x != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        SceneChanger(other);
+
         if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
 
-        if(other.name == "SceneChange1")
-        {
-            SceneManager.LoadScene("Scene2");
-            startingLocation = this.gameObject.transform.position;
-        }
-
-        if(other.name == "SceneChanger2")
-        {
-            SceneManager.LoadScene("Scene3");
-        }
-
         if(other.gameObject.tag == "Enemy")
         {
             //this.gameObject.SetActive(false);
-            this.gameObject.transform.position = startingLocation;
+            transform.position = startingLocation;
         }
 
         if(other.gameObject.tag == "Coin")
@@ -143,6 +154,21 @@ public class PlayerController : MonoBehaviour
         if(isGrounded == true)
         {
              rb.AddForce(new Vector2(rb.velocity.x, _jumpHeight), ForceMode2D.Impulse);
+        }
+    }
+
+    void SceneChanger(Collider2D other)
+    {
+        if(other.name == "SceneChange1")
+        {
+            SceneManager.LoadScene("Scene2");
+            startingLocation = transform.position;
+        }
+
+        if(other.name == "SceneChange2")
+        {
+            SceneManager.LoadScene("Scene3");
+            startingLocation = transform.position;
         }
     }
     
