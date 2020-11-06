@@ -34,11 +34,9 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         player = GetComponent<GameObject>();
 
-        startingLocation = transform.position;
-        isWinScreenOn = false;
 
-        endCanvas.gameObject.SetActive(false);
-        //startCanvas.gameObject.SetActive(true);
+        startingLocation = transform.position;
+        isStartScreenOn = true;
     }
 
     void Update()
@@ -83,7 +81,8 @@ public class PlayerController : MonoBehaviour
             if(Input.GetButtonDown("Cancel")) //Esc
             {
                  endCanvas.gameObject.SetActive(false);
-                 Application.Quit();
+                 //Application.Quit();
+                  UnityEditor.EditorApplication.isPlaying = false;
             }
             if(Input.GetButtonDown("Fire1")) //E
             {
@@ -94,11 +93,10 @@ public class PlayerController : MonoBehaviour
 
         if(startCanvas.gameObject.activeInHierarchy == true)
         {
-                if(Input.GetButtonDown("Fire1")) //E
-                {
-                    startCanvas.gameObject.SetActive(false);
-                    isStartScreenOn = false;
-                }
+            if(Input.GetButtonDown("Fire1")) //E
+            {
+                startCanvas.gameObject.SetActive(false);
+            }
         }
     }
 
