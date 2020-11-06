@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public GameObject barrier;
-    public Canvas endCanvas;
-    public Canvas startCanvas;
+    //public Canvas endCanvas;
+    //public Canvas startCanvas;
+    public Canvas canvas;
     public float _moveSpeed = 3f;
     public float _jumpHeight = 3f;
     public float _glideTimeRemaining = 3f;
@@ -76,26 +77,26 @@ public class PlayerController : MonoBehaviour
            }
        }
 
-        if (endCanvas.gameObject.activeInHierarchy == true)
+        if (canvas.gameObject.activeInHierarchy == true && SceneManager.GetActiveScene().name == "Scene3")
         {
             if(Input.GetButtonDown("Cancel")) //Esc
             {
-                 endCanvas.gameObject.SetActive(false);
+                 canvas.gameObject.SetActive(false);
                  //Application.Quit();
                   UnityEditor.EditorApplication.isPlaying = false;
             }
             if(Input.GetButtonDown("Fire1")) //E
             {
-                 endCanvas.gameObject.SetActive(false);
+                 canvas.gameObject.SetActive(false);
                  SceneManager.LoadScene("Scene1");
             }
         }
 
-        if(startCanvas.gameObject.activeInHierarchy == true)
+        if(canvas.gameObject.activeInHierarchy == true && SceneManager.GetActiveScene().name == "Scene1")
         {
             if(Input.GetButtonDown("Fire1")) //E
             {
-                startCanvas.gameObject.SetActive(false);
+                canvas.gameObject.SetActive(false);
             }
         }
     }
@@ -162,7 +163,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.name == "WinningCoin")
         {
             isWinScreenOn = true;
-            endCanvas.gameObject.SetActive(true);
+            canvas.gameObject.SetActive(true);
         }
     }
 

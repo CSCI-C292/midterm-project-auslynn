@@ -4613,6 +4613,10 @@ PrefabInstance:
       propertyPath: endCanvas
       value: 
       objectReference: {fileID: 1798420782}
+    - target: {fileID: 3048569292687201808, guid: ea264a433ebb3c345a578d22b5596008, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1798420782}
     - target: {fileID: 3048569292687201809, guid: ea264a433ebb3c345a578d22b5596008, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.21
