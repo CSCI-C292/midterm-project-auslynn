@@ -32,20 +32,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.Space))
        {
            Jump();
        }
+       */
 
-       if(Input.GetKey(KeyCode.D))
-       {
-           rb.velocity = new Vector2(_moveSpeed, rb.velocity.y);
-       }
+       if(Input.GetButtonDown("Jump"))
+        {
+            int levelMask = LayerMask.GetMask("Level");
 
-       if(Input.GetKey(KeyCode.A))
-       {
-           rb.velocity = new Vector2(-_moveSpeed, rb.velocity.y);
-       }
+            if(Physics2D.BoxCast(transform.position, new Vector2(1f, .1f), 0f, Vector2.down, .01f, levelMask))
+            {
+                Jump();
+            }
+        }
 
        if(Input.GetKey(KeyCode.Z))
        {
@@ -61,6 +63,20 @@ public class PlayerController : MonoBehaviour
                barrier.SetActive(false);
                coinCount = 0;
            }
+       }
+
+    }
+
+    void FixedUpdate()
+    {
+        if(Input.GetKey(KeyCode.D))
+       {
+           rb.velocity = new Vector2(_moveSpeed, rb.velocity.y);
+       }
+
+       if(Input.GetKey(KeyCode.A))
+       {
+           rb.velocity = new Vector2(-_moveSpeed, rb.velocity.y);
        }
 
         if(rb.velocity.x >= 0)
@@ -121,6 +137,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    
     void Jump()
     {
         if(isGrounded == true)
@@ -128,6 +145,13 @@ public class PlayerController : MonoBehaviour
              rb.AddForce(new Vector2(rb.velocity.x, _jumpHeight), ForceMode2D.Impulse);
         }
     }
+    
+
+   /* void Jump()
+    {
+        rb.AddForce(new Vector2(rb.velocity.x, _jumpHeight), ForceMode2D.Impulse);
+    }
+    */
 
     void Glide()
     {
