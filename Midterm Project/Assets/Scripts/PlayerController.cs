@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     Collider2D col;
     Collider2D groundCollider;
     GameObject player;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
     public GameObject barrier;
     public float _moveSpeed = 3f;
     public float _jumpHeight = 3f;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;
     private Vector3 startingLocation;
     private int coinCount = 0;
+    private int isRunning;
 
 
     // Start is called before the first frame update
@@ -59,6 +62,15 @@ public class PlayerController : MonoBehaviour
                coinCount = 0;
            }
        }
+
+        if(rb.velocity.x >= 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
 
