@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     private int coinCount = 0;
     private int isRunning;
     private bool flipVar;
-    private bool isWinScreenOn = false;
-    private bool isStartScreenOn = true;
+    private bool isWinScreenOn;
+    private bool isStartScreenOn;
 
 
     // Start is called before the first frame update
@@ -35,9 +35,10 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<GameObject>();
 
         startingLocation = transform.position;
+        isWinScreenOn = false;
 
         endCanvas.gameObject.SetActive(false);
-        startCanvas.gameObject.SetActive(true);
+        //startCanvas.gameObject.SetActive(true);
     }
 
     void Update()
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
            }
        }
 
-        while (isWinScreenOn == true)
+        if (endCanvas.gameObject.activeInHierarchy == true)
         {
             if(Input.GetButtonDown("Cancel")) //Esc
             {
@@ -91,13 +92,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        while(isStartScreenOn == true)
+        if(startCanvas.gameObject.activeInHierarchy == true)
         {
-            if(Input.GetButtonDown("Fire1")) //E
-            {
-                startCanvas.gameObject.SetActive(false);
-                isStartScreenOn = false;
-            }
+                if(Input.GetButtonDown("Fire1")) //E
+                {
+                    startCanvas.gameObject.SetActive(false);
+                    isStartScreenOn = false;
+                }
         }
     }
 
