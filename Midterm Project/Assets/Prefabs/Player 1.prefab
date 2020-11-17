@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3048569292728214291}
+  attack: {fileID: 6703021318989770932}
   animator: {fileID: 3048569292728214288}
   barrier: {fileID: 0}
   canvas: {fileID: 0}

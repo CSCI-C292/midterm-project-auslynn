@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     Collider2D col;
     Collider2D groundCollider;
     GameObject player;
+    GameObject attack;
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public GameObject barrier;
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         player = GetComponent<GameObject>();
-
+        attack = player.transform.Find("Attack").gameObject;
 
         startingLocation = transform.position;
         canvas.gameObject.SetActive(true);
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        attack.transform.position = new Vector2((player.transform.position.x + .75f), (player.transform.position.y - .25f));
         
         if(Input.GetKeyDown(KeyCode.Space))
        {
