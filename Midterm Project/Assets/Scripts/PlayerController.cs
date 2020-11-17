@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
 
         startingLocation = transform.position;
+        canvas.gameObject.SetActive(true);
         isStartScreenOn = true;
     }
 
