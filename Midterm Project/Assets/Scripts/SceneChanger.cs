@@ -31,5 +31,9 @@ public class SceneChanger : MonoBehaviour
         {
             SceneManager.LoadScene("Scene3");
         }
+        if(other.name == "Player" && this.name == "SceneChanger3")
+        {
+            SceneManager.LoadScene("Scene4");
+        }
     }
 }

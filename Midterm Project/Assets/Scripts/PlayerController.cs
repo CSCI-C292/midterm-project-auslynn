@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     Collider2D col;
     Collider2D groundCollider;
     GameObject player;
-    GameObject attack;
+    public GameObject attack;
     public SpriteRenderer spriteRenderer;
+    public SpriteRenderer attackRenderer;
     public Animator animator;
     public GameObject barrier;
     //public Canvas endCanvas;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private bool flipVar;
     private bool isWinScreenOn;
     private bool isStartScreenOn;
+    private Vector2 attackPosition;
+    private Transform t;
 
 
     // Start is called before the first frame update
@@ -35,7 +38,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         player = GetComponent<GameObject>();
-        attack = player.transform.Find("Attack").gameObject;
+        
+
+        
 
         startingLocation = transform.position;
         canvas.gameObject.SetActive(true);
@@ -44,26 +49,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        attack.transform.position = new Vector2((player.transform.position.x + .75f), (player.transform.position.y - .25f));
+    
+        
         
         if(Input.GetKeyDown(KeyCode.Space))
        {
            Jump();
        }
+
+       if(Input.GetKeyDown(KeyCode.Mouse1) && isGrounded == false)//Q
+       {
+           attack.SetActive(true);
+           attackRenderer.gameObject.SetActive(true);
+       }
        
-        /*
-       if(Input.GetButtonDown("Jump"))
-        {
-            int levelMask = LayerMask.GetMask("Level");
-
-            if(Physics2D.BoxCast(transform.position, new Vector2(1f, .1f), 0f, Vector2.down, .01f, levelMask))
-            {
-                Jump();
-            }
-        }
-        */
-
-
        if(Input.GetKey(KeyCode.Z))
        {
            Glide();
@@ -120,11 +119,16 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
             flipVar = false;
+
+            attackRenderer.flipX = false;
         }
         else if (rb.velocity.x < 0)
         {
             spriteRenderer.flipX = true;
             flipVar = true;
+
+            attackRenderer.flipX = true;
+            t.RotateAround(player.transform.position, new Vector3(0, 0, 1), 180);
         }
         else
         {
@@ -149,6 +153,8 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            attack.SetActive(false);
+            attackRenderer.gameObject.SetActive(false);
         }
 
         if(other.gameObject.tag == "Enemy")
@@ -168,6 +174,12 @@ public class PlayerController : MonoBehaviour
             isWinScreenOn = true;
             canvas.gameObject.SetActive(true);
         }
+/*
+        if(this.name == "Attack" && other.tag == "Enemy")
+        {
+            other.gameObject.SetActive(false);
+        }
+        */
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -205,6 +217,12 @@ public class PlayerController : MonoBehaviour
         if(other.name == "SceneChange2")
         {
             SceneManager.LoadScene("Scene3");
+            startingLocation = transform.position;
+        }
+
+        if(other.name == "SceneChange3")
+        {
+            SceneManager.LoadScene("Scene4");
             startingLocation = transform.position;
         }
     }

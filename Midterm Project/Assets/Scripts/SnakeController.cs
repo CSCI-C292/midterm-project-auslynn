@@ -44,4 +44,12 @@ public class SnakeController : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+
+     void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.name == "Attack")
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 }
