@@ -9,12 +9,16 @@ public class BatController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private float tempTime;
     private Rigidbody2D rb;
+    private AudioSource sound;
+    public AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         tempTime = switchInterval;
+
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +53,7 @@ public class BatController : MonoBehaviour
     {
         if(other.name == "Attack")
         {
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             this.gameObject.SetActive(false);
         }
     }
