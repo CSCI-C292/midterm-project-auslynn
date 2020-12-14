@@ -43,14 +43,19 @@ public class PlayerController : MonoBehaviour
         
 
         startingLocation = transform.position;
-        canvas.gameObject.SetActive(true);
+        if(SceneManager.GetActiveScene().name == "Scene1")
+        {
+            canvas.gameObject.SetActive(true);
+        }
+        else
+        {
+            canvas.gameObject.SetActive(false);
+        }
         isStartScreenOn = true;
     }
 
     void Update()
     {
-    
-        
         
         if(Input.GetKeyDown(KeyCode.Space))
        {
@@ -70,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
        GlideReset();
 
-       if(SceneManager.GetActiveScene().name == "Scene2" || SceneManager.GetActiveScene().name == "Scene3")
+       if(SceneManager.GetActiveScene().name == "Scene2" || SceneManager.GetActiveScene().name == "Scene3" || SceneManager.GetActiveScene().name == "Scene4")
        {
            if(coinCount == 3)
            {
@@ -79,7 +84,7 @@ public class PlayerController : MonoBehaviour
            }
        }
 
-        if (canvas.gameObject.activeInHierarchy == true && SceneManager.GetActiveScene().name == "Scene3")
+        if (canvas.gameObject.activeInHierarchy == true && SceneManager.GetActiveScene().name == "Scene4")
         {
             if(Input.GetButtonDown("Cancel")) //Esc
             {
@@ -100,6 +105,13 @@ public class PlayerController : MonoBehaviour
             {
                 canvas.gameObject.SetActive(false);
             }
+        }
+
+        //ghetto attempt at a fix
+        if(player.transform.position.x < -8.47f && player.transform.position.y > 5f)
+        {
+            Debug.Log("reached");
+            SceneManager.LoadScene("Scene3");
         }
     }
 
@@ -157,7 +169,7 @@ public class PlayerController : MonoBehaviour
             attackRenderer.gameObject.SetActive(false);
         }
 
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" && attack.activeInHierarchy == false)
         {
             //this.gameObject.SetActive(false);
             transform.position = startingLocation;
@@ -174,12 +186,6 @@ public class PlayerController : MonoBehaviour
             isWinScreenOn = true;
             canvas.gameObject.SetActive(true);
         }
-/*
-        if(this.name == "Attack" && other.tag == "Enemy")
-        {
-            other.gameObject.SetActive(false);
-        }
-        */
     }
 
     void OnTriggerExit2D(Collider2D other)

@@ -3568,7 +3568,7 @@ GameObject:
   - component: {fileID: 1771429109}
   - component: {fileID: 1771429108}
   m_Layer: 0
-  m_Name: SceneChanger3
+  m_Name: SceneChange3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3608,7 +3608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771429107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.93, y: 5.73, z: 0}
+  m_LocalPosition: {x: -11.32, y: 5.73, z: 0}
   m_LocalScale: {x: 1, y: 3.108224, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

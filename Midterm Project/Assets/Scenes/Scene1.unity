@@ -664,12 +664,14 @@ MonoBehaviour:
     barrier and continue, but watch out for the snakes!
 
     Use WASD to move, the
-    Space Bar to jump, and hold Z to glide.
+    Space Bar to jump, and hold Z to glide,
+
+    and right click to attack underneath
+    you.
 
     Press the E button to begin.
 
-    Good
-    Luck!'
+    Good Luck!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2178,11 +2180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859789737902744765, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.9
+      value: -9.78
       objectReference: {fileID: 0}
     - target: {fileID: 6859789737902744765, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.75
+      value: -3.62
       objectReference: {fileID: 0}
     - target: {fileID: 6859789737902744765, guid: 373e3fc1cd23944498daac9e93f5f7f4, type: 3}
       propertyPath: m_LocalPosition.z
