@@ -106,13 +106,6 @@ public class PlayerController : MonoBehaviour
                 canvas.gameObject.SetActive(false);
             }
         }
-
-        //ghetto attempt at a fix
-        if(player.transform.position.x < -8.47f && player.transform.position.y > 5f)
-        {
-            Debug.Log("reached");
-            SceneManager.LoadScene("Scene3");
-        }
     }
 
     void FixedUpdate()
