@@ -9,12 +9,16 @@ public class SnakeController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private float tempTime;
     private Rigidbody2D rb;
+    private AudioSource hitSound;
+    public AudioClip hitClip;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         tempTime = switchInterval;
+
+        hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +53,8 @@ public class SnakeController : MonoBehaviour
     {
         if(other.name == "Attack")
         {
+           // Vector3 deathPosition = this.transform.position;
+            AudioSource.PlayClipAtPoint(hitClip, transform.position);
             this.gameObject.SetActive(false);
         }
     }
